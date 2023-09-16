@@ -25,17 +25,19 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            logger.info("Bootstrapping the application...");            
+            logger.info("Bootstrapping the application...");
+            //-- 1) Load the scene graph from the specified FXML file and 
+            // associate it with its FXML controller.
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainApp_layout.fxml"));
             loader.setController(new MainAppController());
             Pane root = loader.load();
+            //-- 2) Create and set the scene to the stage.
             Scene scene = new Scene(root, 500, 300);
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
             primaryStage.show();
         } catch (IOException ex) {
-            //java.util.logging.Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
-            //logger.error(ex.getMessage(), ex);            
+            logger.error(ex.getMessage(), ex);
         }
     }
 

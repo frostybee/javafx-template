@@ -1,7 +1,7 @@
 <configuration scan="true" scanPeriod="30 seconds">
-    <variable scope="local" name="defaultPattern" value="%date{HH:mm:ss.SSS} [Thread.%t] %-30c{1} %-5p %msg%n"/>
-    <variable scope="local" name="mainLogFileName" value="/${user.home}/app.log"/>
-
+<!--    <variable scope="local" name="defaultPattern" value="%date{HH:mm:ss.SSS} [Thread.%t] %-15c{1} %-5p %msg%n"/>-->
+    <variable scope="local" name="defaultPattern" value="%date{HH:mm:ss.SSS}  [%-5p] %-15c{1} msg: %msg%n"/>        
+    <variable scope="local" name="mainLogFileName" value="log/app.log"/>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${defaultPattern}</pattern>

@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author frostybee
  */
-public class MainAppController {
+public class FXMLMainAppController {
 
-    private final static Logger logger = LoggerFactory.getLogger(MainAppController.class);
+    private final static Logger logger = LoggerFactory.getLogger(FXMLMainAppController.class);
     @FXML
     Button btnClickMe;
 

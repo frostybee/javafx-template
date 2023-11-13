@@ -36,9 +36,9 @@ public class MainApp extends Application {
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
             // We just need to bring the main window to front.
-            primaryStage.setAlwaysOnTop(true);
-            primaryStage.setAlwaysOnTop(false);
+            primaryStage.setAlwaysOnTop(true);            
             primaryStage.show();
+            primaryStage.setAlwaysOnTop(false);
         } catch (IOException ex) {
             logger.error(ex.getMessage(), ex);
         }

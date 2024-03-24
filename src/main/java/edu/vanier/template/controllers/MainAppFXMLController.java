@@ -1,0 +1,39 @@
+package edu.vanier.template.controllers;
+
+import edu.vanier.template.MainApp;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * FXML controller class for the primary stage's scene.
+ *
+ * @author frostybee
+ */
+public class MainAppFXMLController {
+
+    private final static Logger logger = LoggerFactory.getLogger(MainAppFXMLController.class);
+        
+    @FXML
+    Button btnClickMe;
+    @FXML
+    Button btnSwitchScene;
+
+    @FXML
+    public void initialize() {
+        logger.info("Initializing MainAppController...");
+        btnClickMe.setOnAction((event) -> {
+            handleClickMe();
+        });
+        btnSwitchScene.setOnAction((event) -> {
+            MainApp.switchScene(MainApp.SECONDARY_LAYOUT, new SecondaryFXMLController());
+            logger.info("Loaded the secondary scene...");
+        });
+    }
+
+    private void handleClickMe() {
+        System.out.println("Click me called.");
+        logger.info("Click me button has been pressed...");
+    }
+}

@@ -26,7 +26,7 @@ It uses `JavaFX 20.0.2`, and includes the [Gradle Wrapper](https://docs.gradle.o
 
 If you have a project that contains multiple `main` methods, then  you need to change the value of the `mainClass` property in the `build.gradle` file. The fully-qualified name of the class that contains the main method to be executed  must be specified.
 
-The `mainClass` property is declared in the application section (shown below). Note that `//` can be used for inserting a line of comment.
+The `mainClass` property is declared in the application section (shown below). Note that `//` can be used for inserting a comment line.
 
 ```gradle
 application {

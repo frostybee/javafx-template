@@ -5,9 +5,8 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.14'
 }
 
-
 def logbackVersion = "1.4.11"
-def javafxVersion = "20.0.2"    
+def javafxVersion = "22.0.2"    
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -40,6 +39,12 @@ dependencies {
     implementation "ch.qos.logback:logback-core:$logbackVersion"
 }
 
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(22)
+    }
+}
 application {       
    // TODO: Specify the fully-qualified name of the class 
    //       that contains the main method to be executed.

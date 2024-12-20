@@ -1,6 +1,8 @@
 package edu.vanier.template.controllers;
 
 import edu.vanier.template.ui.MainApp;
+import java.io.IOException;
+import java.util.logging.Level;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,7 +28,7 @@ public class SecondaryFXMLController {
     }
 
     private void loadPrimaryScene(Event e) {
-        MainApp.switchScene(MainApp.MAINAPP_SCENE_LAYOUT, new MainAppFXMLController());
+        MainApp.switchScene(MainApp.MAINAPP_SCENE);
         logger.info("Loaded the primary scene...");
     }
 }

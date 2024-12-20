@@ -1,6 +1,8 @@
 package edu.vanier.template.ui;
 
 import edu.vanier.template.controllers.MainAppFXMLController;
+import edu.vanier.template.controllers.SceneController;
+import edu.vanier.template.controllers.SecondaryFXMLController;
 import java.io.IOException;
 import java.util.logging.Level;
 import javafx.application.Application;
@@ -22,10 +24,14 @@ import org.slf4j.LoggerFactory;
  */
 public class MainApp extends Application {
 
-    public static final String MAINAPP_SCENE_LAYOUT = "MainApp_layout";
-    public static final String SECONDARY_SCENE_LAYOUT = "secondary_layout";
+    // The FXML file name of the primary scene.
+    public static final String MAINAPP_SCENE = "MainApp_layout";
+    // The FXML file name of the secondary scene.
+    public static final String SECONDARY_SCENE = "secondary_layout";
+    //TODO: declare 
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
     private static Scene scene;
+    private static SceneController sceneController;
 
     @Override
     public void stop() {
@@ -39,12 +45,14 @@ public class MainApp extends Application {
         try {
             logger.info("Bootstrapping the application...");
             // Load the scene of the primary stage.
-            Parent root = loadFXML(MAINAPP_SCENE_LAYOUT, new MainAppFXMLController());
+            Parent root = loadFXML(MAINAPP_SCENE, new MainAppFXMLController());
             scene = new Scene(root, 640, 480);
+            sceneController = new SceneController(scene);
+            sceneController.addScene(MAINAPP_SCENE, root);
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
             // Request putting this appliation's main window on top of other 
-            // already-opened windows upon launching the app.
+            // already-opened windows upon launching t he app.
             primaryStage.setAlwaysOnTop(true);
             primaryStage.show();
             primaryStage.setAlwaysOnTop(false);
@@ -59,38 +67,47 @@ public class MainApp extends Application {
      * This method loads the FXML file and sets the root of the scene to the
      * corresponding view.
      *
-     * @param fxmlFile The name of the FXML file (without the .fxml extension)
-     * that defines the layout of the new scene.
-     * @param fxmlController The controller object associated with the FXML
-     * file, used for handling user interactions in the scene.
+     * @param fxmlFileName The name of the FXML file (without the .fxml
+     * extension) that defines the layout of the scene to be loaded.
      */
-    public static void switchScene(String fxmlFile, Object fxmlController) {
+    //public static void switchScene(String fxmlFile, Object fxmlController) {
+    public static void switchScene(String fxmlFileName) {
         try {
-            scene.setRoot(loadFXML(fxmlFile, fxmlController));
+            if (fxmlFileName.equals(MAINAPP_SCENE)) {
+                // No need to register the primary scene as it 
+                // was already done in the start method.                
+                sceneController.activateScene(fxmlFileName);
+
+            } else if (fxmlFileName.equals(SECONDARY_SCENE)) {
+                if (!sceneController.sceneExists(fxmlFileName)) {
+                    // Instantiate the corresponding FXML controller if the 
+                    // specified scene is being loaded for the frist time.
+                    SecondaryFXMLController controller = new SecondaryFXMLController();
+                    Parent root = loadFXML(fxmlFileName, controller);
+                    sceneController.addScene(SECONDARY_SCENE, root);
+                }
+                // The scene has been previously added, we active it.
+                sceneController.activateScene(fxmlFileName);
+            }
         } catch (IOException ex) {
             logger.error(ex.getMessage(), ex);
-            java.util.logging.Logger.getLogger(MainApp.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     /**
-     * Loads the FXML file and sets its controller. This method is used
-     * internally to load the FXML layout and return a Parent object that
-     * represents the root node of the scene.
+     * Loads the specified FXML file and sets its supplied FXML controller.
      *
-     * @param fxmlFile The name of the FXML file (without the .fxml extension)
+     * @param fxmFileName The name of the FXML file (without the .fxml extension)
      * to be loaded.
      * @param fxmlController The instance of an FXML controller to be associated
      * with the FXML file.
-     *
      * @return The Parent node corresponding to the loaded FXML file, which can
      * be used as the root of a scene.
-     *
      * @throws IOException If an error occurs during the loading of the FXML
      * file.
      */
-    public static Parent loadFXML(String fxmlFile, Object fxmlController) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxmlFile + ".fxml"));
+    public static Parent loadFXML(String fxmFileName, Object fxmlController) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/" + fxmFileName + ".fxml"));
         fxmlLoader.setController(fxmlController);
         return fxmlLoader.load();
     }

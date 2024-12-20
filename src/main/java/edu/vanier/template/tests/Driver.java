@@ -1,6 +1,6 @@
 package edu.vanier.template.tests;
 
-import edu.vanier.template.MainApp;
+import edu.vanier.template.ui.MainApp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

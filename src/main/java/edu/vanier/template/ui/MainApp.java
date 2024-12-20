@@ -1,4 +1,4 @@
-package edu.vanier.template;
+package edu.vanier.template.ui;
 
 import edu.vanier.template.controllers.MainAppFXMLController;
 import java.io.IOException;
@@ -29,8 +29,9 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        // TODO: Here, we need to perform teardown operations 
-        // such as stopping animation, etc.
+        // TODO: 
+        // Here, we need to perform teardown operations such as stopping running 
+        // animation, etc.
     }
 
     @Override

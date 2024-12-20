@@ -1,6 +1,6 @@
 package edu.vanier;
 
-import edu.vanier.template.*;
+import edu.vanier.template.ui.MainApp;
 import edu.vanier.template.tests.*;
 
 /**
@@ -20,14 +20,17 @@ public class Launcher {
      * forwarded to {@link MainApp#main(String[])}.
      */
     public static void main(String[] args) {
-        //TODO: Here you can add in the form of [ClassName].main(args);
-        // NOTE: You can run multiple main methods Once main method at time should be executed.
+        //NOTE: This launcher class allows you to run 
+        //      multiple main methods simultaneously (depending on the context).         
 
-        // Comment out the following line if you would like to run execute another 
-        // main method.
+        //NOTE: Comment out the following line if you would like to execute 
+        //      another class  
         MainApp.main(args);
-
-        // Uncomment the following line to run the Driver's main.
+        //--
+        // Uncomment the following line to run the Driver's main method.
         //Driver.main(args);        
+        //TODO: To run a class' main method, you can add a Java 
+        //      statements in the form of:
+        // [ClassName].main(args);        
     }
 }

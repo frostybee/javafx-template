@@ -6,6 +6,9 @@ build/
 **/**/build/
 log/
 
+# IntelliJ run configuration
+!.run/*
+
 # Ignore Gradle GUI config
 gradle-app.setting
 

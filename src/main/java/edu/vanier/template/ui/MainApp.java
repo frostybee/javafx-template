@@ -27,8 +27,7 @@ public class MainApp extends Application {
     // The FXML file name of the primary scene.
     public static final String MAINAPP_SCENE = "MainApp_layout";
     // The FXML file name of the secondary scene.
-    public static final String SECONDARY_SCENE = "secondary_layout";
-    //TODO: declare 
+    public static final String SECONDARY_SCENE = "secondary_layout";    
     private final static Logger logger = LoggerFactory.getLogger(MainApp.class);
     private static Scene scene;
     private static SceneController sceneController;
@@ -47,6 +46,7 @@ public class MainApp extends Application {
             // Load the scene of the primary stage.
             Parent root = loadFXML(MAINAPP_SCENE, new MainAppFXMLController());
             scene = new Scene(root, 640, 480);
+            // Add the primary scene to the scene-switching controller.
             sceneController = new SceneController(scene);
             sceneController.addScene(MAINAPP_SCENE, root);
             primaryStage.setScene(scene);
@@ -63,14 +63,14 @@ public class MainApp extends Application {
     }
 
     /**
-     * Switches the current scene to the one defined by the specified FXML file.
-     * This method loads the FXML file and sets the root of the scene to the
-     * corresponding view.
+     * Switches between scenes based on the provided FXML file name. This method
+     * checks the type of scene (primary or secondary) and either activates an
+     * existing scene or loads the specified FXML scene for the first time and
+     * adds it to the scene controller.
      *
-     * @param fxmlFileName The name of the FXML file (without the .fxml
-     * extension) that defines the layout of the scene to be loaded.
+     * @param fxmlFileName the name of the FXML file that represents the scene
+     * to switch to.
      */
-    //public static void switchScene(String fxmlFile, Object fxmlController) {
     public static void switchScene(String fxmlFileName) {
         try {
             if (fxmlFileName.equals(MAINAPP_SCENE)) {
@@ -89,6 +89,8 @@ public class MainApp extends Application {
                 // The scene has been previously added, we active it.
                 sceneController.activateScene(fxmlFileName);
             }
+            //TODO: You can register or activate additional scenes here, 
+            //      based on the logic used to add the secondary scene (as shown above).            
         } catch (IOException ex) {
             logger.error(ex.getMessage(), ex);
         }
@@ -97,8 +99,8 @@ public class MainApp extends Application {
     /**
      * Loads the specified FXML file and sets its supplied FXML controller.
      *
-     * @param fxmFileName The name of the FXML file (without the .fxml extension)
-     * to be loaded.
+     * @param fxmFileName The name of the FXML file (without the .fxml
+     * extension) to be loaded.
      * @param fxmlController The instance of an FXML controller to be associated
      * with the FXML file.
      * @return The Parent node corresponding to the loaded FXML file, which can

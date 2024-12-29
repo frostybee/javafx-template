@@ -19,10 +19,10 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <HBox prefHeight="45.0" prefWidth="219.0">
+                  <HBox prefHeight="45.0" prefWidth="419.0">
                      <children>
-                        <Button fx:id="btnClickMe" alignment="BOTTOM_CENTER" mnemonicParsing="false" text="Click me!" />
-                        <Button fx:id="btnSwitchScene" text="Switch to Secondary Scene">
+                        <Button fx:id="btnPlay" alignment="BOTTOM_CENTER" mnemonicParsing="false" text="Play" prefWidth="100" />
+                        <Button fx:id="btnSwitchScene" text="Switch to Secondary Scene" prefWidth="250">
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin></Button>
